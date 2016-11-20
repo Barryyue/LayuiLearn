@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>底层支持</title>
+	<meta charset="utf-8" />
+    <link href="../../Content/layui/css/layui.css" rel="stylesheet" />
+</head>
+<body>
+
+    <script src="../../Content/layui/layui.js"></script>
+    <script>
+        //底层支持,本篇主要介绍layui.js所发挥的作用,其中过滤了大部分在外部可能不是太常用的api,侧重罗列了最常用的框架支撑.
+        //全局配置
+        //方法:layui.config(options)
+        //你可以在使用组件之前,全局化配置一些参数,尽管大部分时候他不是必须的,所以我们目前提供的全局配置项非常少,这也是为了减少一些不必要的工作
+        //尽可能让使用变得更简单,目前支持的全局配置项如下:
+        layui.config({
+            dir: '/res/layui'   //layui.js所在路径 一般情况下可以无视
+            , version: false      //一般用于更新组件缓存,默认不开启,设置为true 让浏览器不缓存,也可以设置一个固定的值
+            , debug: false        //用于开启调试模式,默认false,如果设置为true,则js模块的节点会保留在页面
+            ,base:''            //设定扩展的layui组件所在的目录,一般用于外部组件扩展
+        })
+
+        //定义模块
+        //方法:layui.define([mods],callback)
+        //通过该方法可定义一个layui模块,参数mods是可选的,用于生命该模块所依赖的模块,callback即为模块加载完毕的回调函数,它返回一个exports参数,用于输出该模块的接口
+        layui.define(function (exports) {
+            //do something
+            exports('demo', function () {
+                alert('Hello World');
+            });
+        });
+        //跟requirejs最大不同的地方在于接口输出,exports是一个函数,它接受两个参数,第一个参数为模块名,第二个参数为模块接口,当你声明了上述的一个模块后,
+        //你就可以在外部使用了,demo就会注册到layui对象下,即可通过layui.demo() 去执行该模块的接口,你可以在定义一个模块的时候,声明该模块所需要的依赖,
+        layui.define(['layer', 'laypage'], function (exports) {
+            //do something
+            exports('demo', function () {
+                alert('Hello World');
+            });
+        });
+        //上述['layer','laypage']即为本模块所依赖的模块,他并非只能是一个数组,你也可以直接传一个字符串的模块名,但是这样只能依赖一个模块,
+        
+        //加载所需模块
+        //方法:layui.use([mods],callback)
+        //layui的内置模块并非默认就加载的,它必须在你执行该方法后才会加载,它的参数跟上述的define方法完全一样,
+        //另外请注意,mods里边必须是一个合法的模块名,不能包含目录,如果需要加载目录,建议采用extend建立别名(详见组件规范)
+        layui.use(['laypage', 'layedit'], function () {
+            var laypage = layui.laypage
+            , layedit = layui.layedit;
+            //do something
+        });
+        //该方法的函数其实返回了所加载的借口,所以你其实也可以不通过layui对象赋值获得接口,
+        layui.use(['laypage', 'layedit'], function (laypage, layedit) {
+            //使用分页
+            laypage();
+
+            //建立编辑器
+            layedit.build();
+        });
+
+        //加载完整内置模块
+        //方法:layui.all(callback)
+        //除了使用use方法加载特定需要的模块,layui实际上还提供了构建后的完整模块,它是一个合并的文件,通过all方法即可加载,目前他只有150kb上下,
+        //gzip后只有50kb,所以说他是一个比较小的资源,如果你的页面需要大量用到layui的许多组件,我们推荐你使用该方法,同时他也会只产生一个资源请求,简单粗暴又省事,实为懒人所必备的神器
+        layui.all(function () {
+            var layer = layui.layer
+            , laytpl = layui.laytpl
+            , laypage = layui.laypage
+            , laydate = layui.data
+            //尽情地使用layui全部的内置组件吧,
+        })
+
+        //动态加载css
+        //方法layui.link(table,settings)
+        //参数table为表名,settings是一个对象,用于设置key value
+        //该方法对localStorage进行了良好的封装,在layui的多个内置组件中发挥了重要作用,因此你可以使用它存储一些本地数据
+        //增 向test表插入一个nickname字段,如果该表不存在,则自动建立
+        layui.data('test', {
+            key: 'nickname',
+            value: 'xianxin'
+        });
+        //删 删除test表中的nickname
+        layui.data('test', {
+            key: 'nickname',
+            remove: true
+        });
+        //查 向test表读取全部的数据
+        var localTest = layui.data('test');
+        console.log(localTest.nickname);
+
+        //获取设备信息
+        //方法:layui.device(key) 参数key是可选的
+        //由于layui的一些功能进行了兼容性处理和响应式支持,因此该方法同样发挥了至关重要的作用,尤其是在layui mobile模块中的作用可谓举足轻重,该方法
+        //返回了丰富的设备信息
+        var device = layui.device();
+        device = {
+            os: 'windows'//底层操作系统 windows linux mac等
+            , ie: false//ie6-11版本 如果不是ie浏览器,则返回false
+            , weixin: false//返回是否是微信环境
+            , android: false//返回是否是安卓系统
+            , ios: false//是否是ios系统
+        };
+        //有时你的app可能会对userAgent插入一段特定的标识 
+        //如:Mozilla/5.0..
+        //你要验证当前的webview是否在你的app环境,即可通过上述的myapp(即为Native给webview插入的标识,可以随意定义)来判断
+        var device = layui.device('myapp');
+        if (device.myapp) {
+            alert('');
+        }
+
+        //其他
+        //除此之外,layui.js内部还提供了许多底层引擎,他们同样是整个layui框架体系的有力支撑,
+        //layui.cache   静态属性,获取一些配置及临时的缓存信息
+        //layui.getStyle(node,name)     获取一个原始dom节点的style属性 如 layui.getStyle(document.body,'font-size')
+        //layui.img(url,callback,error) 图片预加载
+        //layui.extend(options)     拓展一个模块别名 如 layui.extend({test:'/res/js/test'});
+        //layui.router()        获得location.hash路由,目前在layui中没有发挥作用,对做单页面应用会派上用场
+        //layui.hint()      向控制台打印一些异常信息,目前只返回了error方法 layui.hint().error('')
+        //layui.each(obj,fn)        对象遍历可用于取代for
+        //layui.stope(e) 阻止事件冒泡
+        //layui.onevent(modName,events,callback)        //自定义模块事件属于比较高级的应用
+        //layui.event(modName,events,params) //执行自定义模块事件,搭配onevent使用
+
+        //第三方支撑
+        //layui部分组件依赖jquery,但是你并不用额外加载jquery,layui已经将jq最稳定的一个版本改为layui的内部模块,当你去使用layer
+        //的时候,它首先判断你是否已经引入了jq,.
+
+    </script>
+</body>
+</html>
