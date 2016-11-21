@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>弹层组件文档 - layui.layer</title>
+	<meta charset="utf-8" />
+    <link href="../../Content/layui/css/layui.css" rel="stylesheet" />
+</head>
+<body>
+    <input  id="id" name="input" value="input"/>
+    <script src="../../Content/layui/layui.js"></script>
+    <script>
+        //layer至今仍作为layui的代表作，她的受众广泛并非偶然，而是这五年多的坚持，不断完善和维护，不断建设和提升社区服务，使得
+        //程序员们纷纷自发传播，乃至于成为今天的layui最强劲的原动力，目前layer已成为国内最多人使用的web弹层组件，
+        
+        //使用场景
+        //由于layer可以独立使用，也可以筒骨layui模块化使用，所以请按照你的实际需求来选择
+        //layui.use(['layer'], function () {
+        //    var layer = layui.layer;
+        //    layer.msg('hello');
+        //})
+
+        //基础参数
+        /*
+            我们提到的基础参数主要是指调用方法时用到的配置项，如layer.open({content:''}); layer.msg('',{time:3})等等，其中的content和time即是基础参数
+            ，以键值对形式存在，基础参数，可合理应用于是任何层类型中，您不需要所有都去配置，大多数都是可选的，而其中的layer.open layer.msg 就是内置方法
+
+            type - 基本层类型
+            类型：number 默认0
+            layer提供了五种类型，可传入的值有 0（信息框，默认） 1（页面层） 2（iframe层） 3（加载层） 4（tips层） 。若你采用layer.open({type:1})方法调用，则type为必填项
+
+            title - 标题
+            类型：string、array、boolean 默认 信息
+            title支持三种类型的值，若你传入的是普通的字符串，如title：‘我是标题’ 那么只会改变标题文本，若你需要自定义标题区域样式，那么你可以title：【‘文本’，‘font-size：18px;’】,
+            数组第二项可以写任意css样式，如果你不想显示标题栏，你可以 title：false
+
+            content - 内容
+            类型：string、dom、array 默认“”
+            content可传入的值是灵活多变的，不仅可以传入普通的html内容，还可以指定dom 更可以随着type的不同而不同，譬如
+
+        */
+        layui.use('layer', function () {
+            var layer = layui.layer;
+            //layer.open({
+            //    type: 1,
+            //    title:'这时',
+            //    content:'传入任意的文本或html'
+            //})
+
+            //layer.open({
+            //    type: 1,
+            //    content:$('#id')
+            //})
+
+            ////ajax获取
+            //$.post('url', {}, function (str) {
+            //    layer.open({
+            //        type: 1,
+            //        content:str
+            //    })
+            //})
+
+            ////如果是iframe层
+            //layer.open({
+            //    type: 2,
+            //    content: 'http://sensin.com',
+            //    //这里content是一个url,如果你不想让iframe出现滚动条,你还可以content:['http://sensin.com','no']
+            //});
+            //如果是用layer.open执行tips层
+            layer.open({
+                type: 4,
+                content:['内容','#id'] //数组第二项即吸附元素选择器或者dom
+            })
+        })
+
+        //skin - 样式类名
+        //类型:string 默认''
+        //skin不仅允许你传入内置的样式class名,还可以传入您自定义的class名.这是一个很好的切入点,意味着你可以借助skin轻松完成不同的风格定制,
+        //目前layer内置的skin有 layui-layer-lan layui-layer-molv,未来我们还会选择性地内置更多,但更推荐您自己来定义,以下是一个自定义风格的简单例子
+
+        //area - 宽高
+        //类型 string/array 默认auto
+        //在默认状态下,layer是宽高都自适应的,但当你只想定义宽度时,你可以area:'500px',高度仍然是自适应的,当你宽高都要定义时,你可以area['500px','300px']
+
+    </script>
+</body>
+</html>

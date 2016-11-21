@@ -218,6 +218,7 @@
     <Content Include="Pages\02Element\04Button.html" />
     <Content Include="Pages\02Element\05Form.html" />
     <Content Include="Pages\02Element\06Nav.html" />
+    <Content Include="Pages\03Modules\01Layer.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
