@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>常见问题</title>
+	<meta charset="utf-8" />
+    <link href="../../Content/layui/css/layui.css" rel="stylesheet" />
+</head>
+<body>
+
+    <script src="../../Content/layui/layui.js"></script>
+    <script>
+        //本篇主要讲解使用过程中普遍遇到的问题,这些问题并非是bug,通常是需要我们自己去注意的一些点
+
+        //应该如何加载组件最科学
+        //事实上我们在组件规范已经有明确的说明,你可以才用预先加载和按需加载两种模式,但是后者我们并不推荐使用,因此我们强烈的推荐方式是,
+        //你应该在你js文件的代码最外层,就把需要用到的组件layui.use一下,
+        //我们强烈推荐你在代码最外层把需要用到的组件先加载
+        layui.use(['layer', 'form', 'element'], function () {
+            var layer = layui.layer
+            , form = layui.form(),
+            element = layui.element();
+        })
+
+        //如何使用内部jq
+        //由于layui部分内置组件依赖jq,所以我们将jq最稳定的一个版本作为一个内置的dom模块,只有你所使用的组件有依赖到他,才会加载,并且如果你的页面已经引入了jq,她并不会重复加载,内置的jq模块除去了全局的$
+        //是一个符合layui规范的标准模块,所以你必须通过以下方式得到
+        //主动加载jq模块
+        layui.use(['jquery', 'layer'], function () {
+            var $ = layui.jquery
+            , layer = layui.layer;
+
+            //后面和你平时使用jq一样
+            $('body').append('Hello jquery');
+        })
+        //如果内置的组件本身就依赖jq,你无需use jq,索尼上面的写法其实可以是
+        layui.use('layer', function () {
+            var $ = layui.jquery
+            , layer = layui.layer;
+        })
+
+        //为什么表单不显示
+        //当你使用表单时layui会对select checkbox radio等原始元素隐藏,从而进行美化修饰处理,但这需要依赖form组件所以你必须加载form
+        //并且执行一个实例,值得注意的是: 导航的Hover效果,tab选项卡等同理
+        layui.use('form', function () {
+            var form = layui.form();//只执行了这一步,部分表单元素才会修饰成功 
+        })
+    </script>
+
+</body>
+</html>

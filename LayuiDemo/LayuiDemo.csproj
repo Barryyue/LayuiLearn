@@ -211,6 +211,7 @@
     <Content Include="Pages\01Base\01Infrastructure.html" />
     <Content Include="Pages\01Base\02Element.html" />
     <Content Include="Pages\01Base\03Modules.html" />
+    <Content Include="Pages\01Base\04faq.html" />
     <Content Include="Pages\01QuickStart.html" />
     <Content Include="Web.config" />
   </ItemGroup>

@@ -17,6 +17,85 @@
         */
 
         //预先加载
+        /*
+            开门见山，还是直接说使用比较妥当。layui得组件加载才用和兴的layui.use(mods,callback) 方法,当你的js需要用到layui组件的时候,我们
+            更推荐你才用预先加载,因为这样可以避免导出写layui.use的麻烦,你应该在最外层如此定义
+        */
+        /*
+            Demo.js
+            使用layui的form和upload组件
+        */
+        layui.use(['form', 'upload'], function () {//如果之家在一个组件,可以不写数组
+            var form = layui.form()//获取form组件
+            , upload = layui.upload;//获取upload组件
+            //监听提交按钮
+            form.on('submit(test)', function (data) {
+                console.info(data);
+            });
+
+            //实例化一个上传控件
+            upload({
+                url: '上传接口url'
+                , success: function (data) {
+                    console.info(data);
+                }
+            });
+        });
+
+        //按需加载(不推荐)
+
+        //组件命名空间
+        /*
+            layui的全部组件绑定在layui对象下,内部由layui.define()方法来完成,每个组件都会有个特有的名字,并且无法被占用,所以你无需担心组件的命名空间被污染,除非是你delete layui.mod;调用一个组件也必须借助layui对象的赋值
+            比如:
+        */
+        layui.use(['layer', 'laypage', 'laydata'], function () {
+            var layer = layui.layer
+            , laypage = layui.laypage
+            , laydate = layui.date;
+            //使用组件
+        })
+        //一个组件一旦加载后,就会注册在layui对象下,所以你无法直接用组件名来获得,而同样借助layui对象,譬如有时你可能会直接在元素的事件属性上去调用一个组件,
+        //例如: <input onclick="layui.laydate()" />
+
+        //扩展一个layui组件
+        /*
+            layui官方提供的组件有时可能还无法满足你,或者你视图按照layer的模块规范来扩展一个组件,那么你有必要认识layui.define方法,相信你在文档左侧的底层支持 中已有阅读,下面就让我们一起扩展一个layui组件吧
+            第一步:确认组件名 假设test 然后新建一个test.js文件放入项目任意目录下
+            第二部:编写test.js如下
+        */
+        /* 扩展一个test组件 */
+        layui.define(function (exports) {//提示:组件也可以依赖其他组件 如 layui.define('layer',callback)
+            var obj = {
+                hello: function (str) {
+                    alert('Hello ' + (str || 'test'));
+                }
+            };
+            //输出test接口
+            exports('test', obj);
+        })
+        //第三步:设定扩展组件所在的目录,然后就可以在憋的js文件中使用了
+        //config的设置时全局的
+        layui.config({
+            base:'/res/js/' //假设test.js所在的目录
+        }).extend({//设定组件别名
+            test: 'test'//如果test.js是在根目录,也可以不用设定别名
+            ,test:'admin/test1' //相对上述base目录的子目录
+        })
+        //使用test
+        layui.use('test', function () {
+            var test = layui.test;
+            test.hello('World');//弹出 Hello World
+        })
+
+        //使用test1
+        layui.use('test1', function () {
+            var test = layui.test1;
+        })
+        //大体上来说,layui的模块定义很类似requirejs和sea.js 但是跟他们又有着明显的不同,譬如在接口输出等地方
+
+        //结语
+        //其实关于模块的核心,就是layuijs的两个底层方法 一个用于定义模块的layui.define() 一个加载模块的layui.use();
     </script>
     
 </body>
