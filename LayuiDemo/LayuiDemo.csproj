@@ -213,6 +213,7 @@
     <Content Include="Pages\01Base\03Modules.html" />
     <Content Include="Pages\01Base\04faq.html" />
     <Content Include="Pages\01QuickStart.html" />
+    <Content Include="Pages\02Element\02icon.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -233,7 +234,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>64426</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:64426/</IISUrl>
+          <IISUrl>http://localhost:64427/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
