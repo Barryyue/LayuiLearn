@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>表单 - 页面元素</title>
+    <meta charset="utf-8" />
+    <link href="../../Content/layui/css/layui.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="layui-main">
+        <fieldset class="layui-elem-field">
+            <legend>先用一下</legend>
+            <div class="layui-field-box">
+                <!-- 表单start -->
+                <form class="layui-form layui-form-pane" action="">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">输入框</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input" />
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">密码框</label>
+                        <div class="layui-input-inline">
+                            <input type="password" name="pwd" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input" />
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">辅助文字</div>
+                    </div>
+                    <div class="layui-form-item">
+                       <label class="layui-form-label">选择框</label>
+                        <div class="layui-input-block">
+                            <select name="city" lay-verify="required">
+                                <option value=""></option>
+                                <option value="0">北京</option>
+                                <option value="1">上海</option>
+                                <option value="2">广州</option>
+                                <option value="3">深圳</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">复选框</label>
+                        <div class="layui-input-block">
+                            <input type="checkbox" name="like[write]" title="写作"/>
+                            <input type="checkbox" name="like[read]" title="阅读" checked="checked"/>
+                            <input type="checkbox" name="like[dai]" title="发呆"/>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">开关</label>
+                        <div class="layui-inline">
+                            <input type="checkbox" name="switch" lay-skin="switch"/>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">单选框</label>
+                        <div class="layui-input-inline">
+                            <input type="radio" name="sex" value="男" title="男"/>
+                            <input type="radio" name="sex" value="女" title="女" checked/>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">文本域</label>
+                        <div class="layui-input-block">
+                            <textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- 表单end -->
+            </div>
+        </fieldset>
+    </div>
+    <script src="../../Content/layui/layui.js"></script>
+    <script>
+        //在一个容器中设定 class=layui-form来标识一个表单元素块，通过规范好得html结构及css类，来组装成各种各样得表单元素，并通过内
+        //置form组件来完成各种交互
+        //依赖加载组建form
+        layui.use('form', function () {
+            var form = layui.form();
+            //提交
+            form.on('submit(formDemo)', function (data) {
+                layer.msg(JSON.stringify(data));
+                return false;
+            })
+        })
+    </script>
+</body>
+</html>
