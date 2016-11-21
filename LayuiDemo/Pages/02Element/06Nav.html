@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>导航菜单、tab选项卡-页面元素</title>
+	<meta charset="utf-8" />
+    <link href="../../Content/layui/css/layui.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- 水平导航 -->
+    <ul class="layui-nav">
+        <li class="layui-nav-item"><a href="">最新活动</a></li>
+        <li class="layui-nav-item layui-this"><a href="">产品</a></li>
+        <li class="layui-nav-item"><a href="">大数据</a></li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">解决方案</a>
+            <dl class="layui-nav-child">
+                <dd><a href="">移动模块</a></dd>
+                <dd><a href="">后台模板</a></dd>
+                <dd><a href="">电商平台</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">社区</a></li>
+    </ul>
+
+    <!-- 垂直、侧边导航 -->
+    <!--<ul class="layui-nav layui-nav-tree layui-nav-side">
+        <li class="layui-nav-item layui-nav-itemed">
+            <a href="javascript:;">默认展开</a>
+            <dl class="layui-nav-child">
+                <dd><a href="">选项1</a></dd>
+                <dd><a href="">选项2</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="">产品</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">解决方案</a>
+            <dl class="layui-nav-child">
+                <dd><a href="">移动模块</a></dd>
+                <dd><a href="">后台模版</a></dd>
+                <dd><a href="">电商平台</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">大数据</a></li>
+    </ul>-->
+
+    <!-- 面包屑 -->
+    <span class="layui-breadcrumb">
+        <a href="">首页</a>
+        <a href="">国际新闻</a>
+        <a href="">亚太地区</a>
+        <a><cite>正文</cite></a>
+    </span>
+
+    <!-- separator用来设置分隔符 -->
+    <span class="layui-breadcrumb" lay-separator="-">
+        <a href="">首页</a>
+        <a href="">国际新闻</a>
+        <a href="">亚太地区</a>
+        <a ><cite>正文</cite></a>
+    </span>
+
+    <!-- Tab选项卡（默认风格） -->
+    <!--<div class="layui-tab">
+        <ul class="layui-tab-title">
+            <li class="layui-this">网址设置</li>
+            <li>用户管理</li>
+            <li>权限分配</li>
+            <li>商品管理</li>
+            <li>订单管理</li>
+        </ul>
+    </div>
+    <div class="layui-tab-content">
+        <div class="layui-tab-item layui-show">内容1</div>
+        <div class="layui-tab-item">内容2</div>
+        <div class="layui-tab-item">内容3</div>
+        <div class="layui-tab-item">内容4</div>
+        <div class="layui-tab-item"> 内容5</div>
+    </div>-->
+
+    <!-- Tab简洁风格 -->
+    <div class="layui-tab layui-tab-brief"  >
+        <ul class="layui-tab-title">
+            <li class="layui-this">网站设置</li>
+            <li>用户管理</li>
+            <li>权限分配</li>
+            <li>商品管理</li>
+            <li>订单管理</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">网站1</div>
+            <div class="layui-tab-item">网站2</div>
+            <div class="layui-tab-item">网站3</div>
+            <div class="layui-tab-item">网站4</div>
+            <div class="layui-tab-item">网站5</div>
+        </div>
+    </div>
+
+    <script src="../../Content/layui/layui.js"></script>
+    <script>
+        //导航菜单可应用于头部和侧边，tab选项卡提供多套风格，支持响应式，支持删除选项卡等功能，面包屑结构简单，支持自定义分隔符。
+        //依赖加载组件 element （请注意：必须加载element模块，相关功能才能正常桑踹死，详见：内置组件 - 常用元素操作）
+        layui.use(['element'], function () {
+            var element = layui.element();
+            element.on('tab(test)', function (data) {
+                console.log(data);
+            });
+        })
+
+        //水平，垂直，侧边三个导航的html结构是完全一样的，不同的是
+        //垂直导航需要加class layui-nav-tree
+        //侧边导航需要加class layui-nav-side layui-nav-tree
+
+        //面包屑
+
+
+        //tab选项卡
+        //tab广泛应用于web页面，因此我们也对其进行良好的支持，layui内置多种tab风格，支持删除选项卡，并提供响应式支持
+
+        //通过追加class  layui-tab-brief来设定简洁风格
+        //值得注意的是，如果存在layui-tab-item的内容区域，在切换时自动定位到对应内容，如果不存在区域。则不会定位到对应内容
+        //设置过滤器，通过element模块的监听
+
+    </script>
+</body>
+</html>

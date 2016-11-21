@@ -7,7 +7,7 @@
     <link href="../../Content/layui/css/layui.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="layui-main">
+    <div class="">
         <fieldset class="layui-elem-field">
             <legend>先用一下</legend>
             <div class="layui-field-box">
@@ -16,7 +16,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">输入框</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input" />
+                            <input type="text" name="title" lay-verify="title"  placeholder="请输入标题" autocomplete="off" class="layui-input" />
                         </div>
                     </div>
                     <div class="layui-form-item">
@@ -65,6 +65,8 @@
                             <textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
                         </div>
                     </div>
+
+                    <input type="checkbox" name="close" lay-skin="switch" title="开关">
                     <div class="layui-form-item">
                         <div class="layui-input-block">
                             <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
@@ -83,12 +85,65 @@
         //依赖加载组建form
         layui.use('form', function () {
             var form = layui.form();
+
+            form.verify({
+                title: function (value) {
+                    if (value=="") {
+                        return "标题不能为空";
+                    }
+                }
+            })
+
             //提交
             form.on('submit(formDemo)', function (data) {
+                console.info(data);
                 layer.msg(JSON.stringify(data));
                 return false;
             })
         })
+
+        //通过上述的小小演示,你已经大致了解了一下layui的表单模块,你可能会觉得她还算不错,但并不太过瘾,譬如你希望看到日期选择,图片上传等等,
+        //然而你必须认识到,本篇文档核心介绍的是表单元素,对于日期上传等更丰富的元素,其实也是可以很方便的穿插在内的.
+
+        //ui的最终呈现得益于form组件的全自动渲染,他将原本普通的诸如select checkbox radio 等元素重置为你所看到的模样,或许你可以移步左侧
+        //导航的内置组件中的表单 对其进行更详细的了解
+        //而本篇介绍的是表单元素本身,譬如规定的区块,css类,原始控件等,他们共同组成了一个表单体系
+        
+        //下述是基本行区块结构,他提供了响应式的支持,但如果你不太喜欢.你可以换成你的结构,但必须要在外层容器中定义class=layui-form  form
+        //组件才能正常工作,
+
+        //输入框
+        //required  注册浏览器所规定的必填字段
+        //lay-verify  注册form组件需要验证的类型
+        //class=layui-input  layui.css提供的通用css类
+
+        //下拉框
+        //option的第一项主要是占个坑,让form组件预留给请选择 的提示空间,否则将会把第一项(存在value值)作为默认选中项,你可以在option的空值项中自定义文本,
+        //form组件的请选择将会替换成他, 但请注意：不能设置value值，其他的选项value是可以随意定义的
+        //属性selected可设定默认项
+        //属性disabled开启禁用，select和option标签都支持
+
+        //复选框
+        //属性title可自定义文本
+        //属性checked可设定默认选中
+
+        //开关
+        //属性disabled开启禁用
+
+        //单选框
+        //属性title可自定义文本
+        //属性disabled开启禁用
+
+        //文本域
+        //class="layui-textarea" layui.css提供的通用css类
+
+        //组装行内表单
+        //class="layui-inline" 定义外层行内
+        //class='layui-input-inline' 定义内层行内
+
+        //表单方框风格
+        //筒骨追击layui-form-pane 的class 来设定表单的方框风格，内部结构不变，我们的fly社区用的就是这个风格
+
     </script>
 </body>
 </html>
