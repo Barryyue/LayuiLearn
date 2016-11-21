@@ -98,6 +98,24 @@
         </div>
     </div>
 
+    <!-- Tab卡片风格 -->
+    <div class="layui-tab layui-tab-card" style="height:100px;">
+        <ul class="layui-tab-title">
+            <li class="layui-this">网站设置</li>
+            <li>用户管理</li>
+            <li>权限管理</li>
+            <li>商品管理</li>
+            <li>订单管理</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">1</div>
+            <div class="layui-tab-item">2</div>
+            <div class="layui-tab-item">3</div>
+            <div class="layui-tab-item">4</div>
+            <div class="layui-tab-item">5</div>
+        </div>
+    </div>
+
     <script src="../../Content/layui/layui.js"></script>
     <script>
         //导航菜单可应用于头部和侧边，tab选项卡提供多套风格，支持响应式，支持删除选项卡等功能，面包屑结构简单，支持自定义分隔符。
@@ -122,6 +140,16 @@
         //通过追加class  layui-tab-brief来设定简洁风格
         //值得注意的是，如果存在layui-tab-item的内容区域，在切换时自动定位到对应内容，如果不存在区域。则不会定位到对应内容
         //设置过滤器，通过element模块的监听
+
+        //Tab卡片风格
+        //通过追击class=“layui-tab-card”来设定卡片风格
+
+        //Tab响应式
+        //当容器的宽度不足以显示全部的选项时，即会自动出现展开图标，如下卡片风格为例(注意:所有tab风格都支持响应式)
+
+        //带删除的tab
+        //你可以对父层容器设置属性 lay-allowClose=true 来允许tab选项卡被删除
+
 
     </script>
 </body>
