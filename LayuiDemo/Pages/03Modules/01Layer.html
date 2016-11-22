@@ -1,18 +1,18 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>弹层组件文档 - layui.layer</title>
-	<meta charset="utf-8" />
+    <meta charset="utf-8" />
     <link href="../../Content/layui/css/layui.css" rel="stylesheet" />
 </head>
 <body>
-    <input  id="id" name="input" value="input"/>
+    <input id="id" name="input" value="input" />
     <script src="../../Content/layui/layui.js"></script>
     <script>
         //layer至今仍作为layui的代表作，她的受众广泛并非偶然，而是这五年多的坚持，不断完善和维护，不断建设和提升社区服务，使得
         //程序员们纷纷自发传播，乃至于成为今天的layui最强劲的原动力，目前layer已成为国内最多人使用的web弹层组件，
-        
+
         //使用场景
         //由于layer可以独立使用，也可以筒骨layui模块化使用，所以请按照你的实际需求来选择
         //layui.use(['layer'], function () {
@@ -69,7 +69,7 @@
             //如果是用layer.open执行tips层
             layer.open({
                 type: 4,
-                content:['内容','#id'] //数组第二项即吸附元素选择器或者dom
+                content: ['内容', '#id'] //数组第二项即吸附元素选择器或者dom
             })
         })
 
@@ -81,6 +81,81 @@
         //area - 宽高
         //类型 string/array 默认auto
         //在默认状态下,layer是宽高都自适应的,但当你只想定义宽度时,你可以area:'500px',高度仍然是自适应的,当你宽高都要定义时,你可以area['500px','300px']
+
+        //offset - 坐标
+        //类型:string/array 默认:垂直水平居中
+        //offset默认情况下不用设置,但如果你不想垂直水平居中,你可以进行以下赋值:
+
+        //icon - 图标. 信息框和加载层的私有参数
+        //类型:number 默认 -1 (信息框) /0(加载层)
+        //信息框默认不显示图标,当你想显示图标时,默认皮肤可以传入0-6 如果是加载层,可以传入0-2
+        //layer.alert('酷毙了',{icon:1});
+
+        //btn - 按钮
+        //类型:string/array 默认'确认'
+        //信息框模式时,btn默认是一个确认按钮,其他层配型则默认不显示,加载层和tips层则无效,当您只想自定义一个按钮时,你可以btn:'我知道了'
+        //当你要定义两个按钮时,你可以btn['yes','no'],当然,你可以定义多个按钮,
+        //前两个按钮分别是yes和cancel 而从第三个按钮开始,则回调为btn3:function(){} 以此类推
+        layui.use('layer', function () {
+            var layer = layui.layer;
+            layer.comfirm('纳尼?', {
+                btn: ['按钮1', '按钮2', '按钮3']
+                , btn3: function (index, layero) {
+                    //按钮三的回调
+                }, function (index, layero) {
+                    //按钮1的回调
+                }, function (index) {
+                    //按钮2的回调
+                }
+            })
+
+            layer.open({
+                content: 'test',
+                btn: ['按钮1', '按钮2', '按钮3'],
+                yes: function (index,layero) {
+                    //按钮1的回调
+                },
+                btn2: function (index,layero) {
+                    //按钮2的回调
+                },
+                btn3: function (index,layero) {
+                    //按钮3的回调
+                },
+                cancel: function () {
+                    //右上角关闭的回调
+                }
+            })
+
+        })
+
+        //btnAlign - 按钮排列
+        //类型string 默认r
+        //你可以快捷定义按钮的排列位置,btnAlign的默认为r,即右对齐,该参数可以支持的赋值如下
+        //l 左对齐 c 居中 r右对齐
+
+        //closeBtn - 关闭按钮
+        //类型string /boolean 默认1
+        //layer提供两种风格的关闭按钮,可通过配置1和2来展示,如果不显示,则closeBtn:0
+
+        //shade - 遮罩
+        //类型:string/array/boolean 默认0.3,
+        //即弹层外区域,默认是0.3透明度的黑色背景,如果你想定义别的颜色,可以shade[0.8,'#0094ff'],如果你不想显示遮罩,可以设置 shade:0,
+
+        //shadeClose - 是否点击遮罩关闭
+        //类型 :boolean 默认false
+        //如果你想shade是存在的,那么你可以设定shadeClose来控制点击弹层外区域关闭
+
+        //time - 自动关闭所需毫秒
+        //类型:nubmer 默认0
+        //默认不会自动关闭的,如果你想自动关闭,可以time:5000,即代表五秒后自动关闭,
+
+        //id - 用于控制弹层唯一标识
+        //类型:string 默认空字符
+        //设置值后,不管是什么类型的层,都只允许同时弹出一个,一般用于页面层和iframe层模式
+
+        //anim - 动画
+        //类型:number 默认0
+        //我们出场全部采用css3,这意味着除了ie6-9,
 
     </script>
 </body>
