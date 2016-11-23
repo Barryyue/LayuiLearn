@@ -24,6 +24,10 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -75,6 +79,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="js\01Test.js" />
+    <Content Include="js\02let_const.js" />
+    <Content Include="js\03变量的解构赋值.js" />
+    <Content Include="pages\01Test.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
