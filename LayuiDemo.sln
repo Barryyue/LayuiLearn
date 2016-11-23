@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LayuiDemo", "LayuiDemo\Layu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VueDemo", "VueDemo\VueDemo.csproj", "{66EA8613-5074-4E42-B558-50D5B3EDE009}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ES6Learn", "ES6Learn\ES6Learn.csproj", "{506F11F3-947F-4379-AB7A-07192CD74C3E}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -25,6 +27,10 @@ Global
 		{66EA8613-5074-4E42-B558-50D5B3EDE009}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66EA8613-5074-4E42-B558-50D5B3EDE009}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66EA8613-5074-4E42-B558-50D5B3EDE009}.Release|Any CPU.Build.0 = Release|Any CPU
+		{506F11F3-947F-4379-AB7A-07192CD74C3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{506F11F3-947F-4379-AB7A-07192CD74C3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{506F11F3-947F-4379-AB7A-07192CD74C3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{506F11F3-947F-4379-AB7A-07192CD74C3E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
